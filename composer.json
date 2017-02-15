@@ -1,6 +1,6 @@
 {
     "name": "cviniciussdias/dependency-resolver",
-    "description": "Dependency Resolver",
+    "description": "Dependency Resolver. A simple component to resolve classes dependencies and instantiate them automagically.",
     "type": "library",
     "license": "GPL",
     "authors": [
