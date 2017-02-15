@@ -21,6 +21,9 @@ class Resolver
      */
     private $parameters;
 
+    /**
+     * Initialize the parameters array
+     */
     public function __construct()
     {
         $this->parameters = array();
