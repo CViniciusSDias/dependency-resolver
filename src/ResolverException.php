@@ -1,16 +1,16 @@
 <?php
 /**
- * This file defines the CViniciusSDias\DependencyInjection\ResolverException
+ * This file defines the CViniciusSDias\DependencyResolver\ResolverException
  * exception for the Dependency Resolver created by Vinicius Dias
  */
 
-namespace CViniciusSDias\DependencyInjection;
+namespace CViniciusSDias\DependencyResolver;
 
 /**
  * Exception thrown when a dependency cannot be resolved
  *
  * @author Vinicius Dias
- * @package CViniciusSDias\DependencyInjection
+ * @package CViniciusSDias\DependencyResolver
  */
 class ResolverException extends Exception
 {

@@ -1,10 +1,10 @@
 <?php
 /**
- * This file defines the CViniciusSDias\DependencyInjection\Resolver class
+ * This file defines the CViniciusSDias\DependencyResolver\Resolver class
  * created by Vinicius Dias
  */
 
-namespace CViniciusSDias\DependencyInjection;
+namespace CViniciusSDias\DependencyResolver;
 
 use ReflectionClass;
 
@@ -12,7 +12,7 @@ use ReflectionClass;
  * Dependency Resolver
  *
  * @author Vinicius Dias
- * @package CViniciusSDias\DependencyInjection
+ * @package CViniciusSDias\DependencyResolver
  */
 class Resolver
 {

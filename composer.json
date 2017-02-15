@@ -1,5 +1,5 @@
 {
-    "name": "cviniciussdias/dependency-injection",
+    "name": "cviniciussdias/dependency-resolver",
     "description": "Dependency Resolver",
     "type": "library",
     "license": "GPL",
@@ -12,7 +12,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "CViniciusSDias\\DependencyInjection\\": "src/"
+            "CViniciusSDias\\DependencyResolver\\": "src/"
         }
     }
 }
