@@ -40,6 +40,10 @@ class Class2
 
 class Class3
 {
+    public function __construct($paramWithoutDefaulValue)
+    {
+    }
+
     public function method()
     {
         return 'Class3::method()' . PHP_EOL;
@@ -47,6 +51,7 @@ class Class3
 }
 
 $resolver = new Resolver();
+$resolver->setParameters(Class3::class, ['paramWithoutDefaulValue' => 'manual value']);
 $class1 = $resolver->resolve(Class1::class);
 $class1->test();
 
