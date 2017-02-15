@@ -1,14 +1,25 @@
 # Dependency Resolver
 
+## Description
+
 This is a simple Dependency Resolver to resolve classes dependencies and instantiate
 them automagically.
 
-## Example
----
+## Instalation
+
+Install the latest version with:
+
+```bash
+$ composer require cviniciussdias/dependency-resolver
+```
+
+## Usage
 
 ```php
+<?php
 use CViniciusSDias\DependencyResolver\Resolver;
 
+// Classes definitions
 class Class1
 {
     private $class2;
@@ -50,6 +61,7 @@ class Class3
     }
 }
 
+// Resolver usage
 $resolver = new Resolver();
 $resolver->setParameters(Class3::class, ['paramWithoutDefaulValue' => 'manual value']);
 $class1 = $resolver->resolve(Class1::class);
