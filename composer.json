@@ -1,6 +1,6 @@
 {
     "name": "cviniciussdias/dependency-injection",
-    "description": "Dependency Injection Container",
+    "description": "Dependency Resolver",
     "type": "library",
     "license": "GPL",
     "authors": [
