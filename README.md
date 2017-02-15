@@ -68,3 +68,9 @@ $class1 = $resolver->resolve(Class1::class);
 $class1->test();
 
 ```
+
+## Author
+Vinicius Dias - carlosv775@gmail.com - https://github.com/CViniciusSDias/
+
+## License
+This component is licensed under the GPL License
