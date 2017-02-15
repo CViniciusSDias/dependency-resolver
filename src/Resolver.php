@@ -75,7 +75,6 @@ class Resolver
      * @param \ReflectionParameter[] $params Constructor arguments
      * @return array Resolved constructor arguments in case of success
      * @throws \Exception If there's any argument without type
-     * @todo Resolve params with factories or default values
      */
     private function tryGetArguments($className, array $params)
     {
