@@ -107,6 +107,7 @@ class Resolver
             return;
         }
 
+        // If the parameter does not have a type and is not a class
         if (!$param->hasType() || $param->getType()->isBuiltin()) {
             throw new ResolverException();
         }
