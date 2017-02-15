@@ -1,7 +1,7 @@
 # Dependency Resolver
 
-This is a simple Dependency Resolver for instantiating classes resolving their
-dependencies automagically.
+This is a simple Dependency Resolver to resolve classes dependencies and instantiate
+them automagically.
 
 ## Example
 ---
