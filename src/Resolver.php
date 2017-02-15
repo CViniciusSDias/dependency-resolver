@@ -17,6 +17,28 @@ use ReflectionClass;
 class Resolver
 {
     /**
+     * @var array $parameters Manually informed values dictionary
+     */
+    private $parameters;
+
+    public function __construct()
+    {
+        $this->parameters = array();
+    }
+
+    /**
+     * Set the values for the specified class' arguments
+     *
+     * @param string $className Name of the class to have the values informed
+     * @param array $values Values to pass to the class' constructor. Param name as
+     * key and its value as the array value
+     */
+    public function setParameters($className, array $values)
+    {
+        $this->parameters[$className] = $values;
+    }
+
+    /**
      * From a class name, returns an instance with all depencies resolved
      *
      * @param string $className
@@ -32,30 +54,31 @@ class Resolver
 			return $reflectionClass->newInstanceWithoutConstructor();
 		}
 
-        $parametros = $constructor->getParameters();
+        $params = $constructor->getParameters();
         // If there are no dependencies, instantiate without any parameters in constructor
-        if (count($parametros) === 0) {
+        if (count($params) === 0) {
             return $reflectionClass->newInstance();
         }
 
         // Try to resolve the parameters and instantiate the object with them
-        $argumentos = $this->tryGetArguments($parametros);
+        $argumentos = $this->tryGetArguments($className, $params);
         return $reflectionClass->newInstanceArgs($argumentos);
     }
 
     /**
      * Try to resolve the constructor arguments and return them in an array
      *
+     * @param string $className Name of the class to have the params resolved
      * @param \ReflectionParameter[] $params Constructor arguments
      * @return array Resolved constructor arguments in case of success
      * @throws \Exception If there's any argument without type
      * @todo Resolve params with factories or default values
      */
-    private function tryGetArguments($params)
+    private function tryGetArguments($className, array $params)
     {
         $args = [];
         foreach ($params as $param) {
-            $this->resolveParam($args, $param);
+            $this->resolveParam($className, $args, $param);
         }
 
         return $args;
@@ -64,14 +87,22 @@ class Resolver
     /**
      * Resolve a parameter
      *
+     * @param string $className Name of the class to have the parameter resolved
      * @param array $args Arguments array passed by reference to put resolved param
      * @param mixed $param Parameter to resolve
      * @return void
      * @throws \Exception If there's any argument without type
      */
-    private function resolveParam(array &$args, $param)
+    private function resolveParam($className, array &$args, $param)
     {
-        if ($param->isOptional()) {
+        // If the class has parameters informed and the current param has a defined value
+        if ($this->paramExistsForClass($className, $param->getName())) {
+            $paramValue = $this->getParameterValue($className, $param->getName());
+            array_push($args, $paramValue);
+            return;
+        }
+
+        if ($param->isDefaultValueAvailable()) {
             array_push($args, $param->getDefaultValue());
             return;
         }
@@ -82,5 +113,32 @@ class Resolver
 
         $tipo = (string) $param->getType();
         array_push($args, $this->resolve($tipo));
+    }
+
+    /**
+     * Gets a parameter with the specified name for the specified class
+     *
+     * @param string $className
+     * @param string $paramName
+     * @return mixed
+     */
+    private function getParameterValue($className, $paramName)
+    {
+        $classParams = $this->parameters[$className];
+
+        return $classParams[$paramName];
+    }
+
+    /**
+     * Check if the specified parameter exists for the specified class
+     *
+     * @param string $className
+     * @param string $paramName
+     * @return bool
+     */
+    private function paramExistsForClass($className, $paramName)
+    {
+        return array_key_exists($className, $this->parameters)
+            && array_key_exists($paramName, $this->parameters[$className]);
     }
 }
