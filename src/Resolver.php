@@ -46,7 +46,7 @@ class Resolver
     /**
      * Try to resolve the constructor arguments and return them in an array
      *
-     * @param array $params Constructor arguments
+     * @param \ReflectionParameter[] $params Constructor arguments
      * @return array Resolved constructor arguments in case of success
      * @throws \Exception If there's any argument without type
      * @todo Resolve params with factories or default values
@@ -55,14 +55,32 @@ class Resolver
     {
         $args = [];
         foreach ($params as $param) {
-            if (!$param->hasType() || $param->getType()->isBuiltin()) {
-                throw new ResolverException();
-            }
-
-            $tipo = (string) $param->getType();
-            array_push($args, $this->resolve($tipo));
+            $this->resolveParam($args, $param);
         }
 
         return $args;
+    }
+
+    /**
+     * Resolve a parameter
+     *
+     * @param array $args Arguments array passed by reference to put resolved param
+     * @param mixed $param Parameter to resolve
+     * @return void
+     * @throws \Exception If there's any argument without type
+     */
+    private function resolveParam(array &$args, $param)
+    {
+        if ($param->isOptional()) {
+            array_push($args, $param->getDefaultValue());
+            return;
+        }
+
+        if (!$param->hasType() || $param->getType()->isBuiltin()) {
+            throw new ResolverException();
+        }
+
+        $tipo = (string) $param->getType();
+        array_push($args, $this->resolve($tipo));
     }
 }

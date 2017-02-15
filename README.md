@@ -7,7 +7,7 @@ them automagically.
 ---
 
 ```php
-use CViniciusSDias\DependencyInjection\Resolver;
+use CViniciusSDias\DependencyResolver\Resolver;
 
 class Class1
 {
@@ -27,8 +27,10 @@ class Class1
 
 class Class2
 {
-    public function __construct(Class3 $test)
-    {}
+    public function __construct(Class3 $test, $param = 'default value')
+    {
+        echo $param . PHP_EOL;
+    }
 
     public function __toString()
     {
