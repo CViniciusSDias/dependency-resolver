@@ -1,0 +1,18 @@
+{
+    "name": "cviniciussdias/dependency-injection",
+    "description": "Dependency Injection Container",
+    "type": "library",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "CViniciusSDias",
+            "email": "carlosv775@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "CViniciusSDias\\DependencyInjection\\": "src/"
+        }
+    }
+}
