@@ -12,6 +12,6 @@ namespace CViniciusSDias\DependencyResolver;
  * @author Vinicius Dias
  * @package CViniciusSDias\DependencyResolver
  */
-class ResolverException extends Exception
+class ResolverException extends \Exception
 {
 }
