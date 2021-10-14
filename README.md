@@ -1,5 +1,9 @@
 # Dependency Resolver
 
+## :stop_sign: Attention!
+
+This project was built for educational purposes, therefore it should not run in production environments.
+
 ## Description
 
 This is a simple Dependency Resolver to resolve classes dependencies and instantiate
