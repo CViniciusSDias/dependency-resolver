@@ -2,7 +2,7 @@
 
 ## :stop_sign: Attention!
 
-This project was built for educational purposes, therefore it should not run in production environments.
+This project was built for educational purposes, therefore it should **NOT** run in production environments.
 
 ## Description
 
