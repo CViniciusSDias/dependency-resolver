@@ -1,8 +1,4 @@
 <?php
-/**
- * This file defines the CViniciusSDias\DependencyResolver\ResolverException
- * exception for the Dependency Resolver created by Vinicius Dias
- */
 
 namespace CViniciusSDias\DependencyResolver;
 
