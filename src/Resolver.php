@@ -1,8 +1,4 @@
 <?php
-/**
- * This file defines the CViniciusSDias\DependencyResolver\Resolver class
- * created by Vinicius Dias
- */
 
 namespace CViniciusSDias\DependencyResolver;
 
@@ -53,9 +49,9 @@ class Resolver
         $constructor = $reflectionClass->getConstructor();
 
         // If there isn't a constructor, instantiate whitout it
-		if (is_null($constructor)) {
-			return $reflectionClass->newInstanceWithoutConstructor();
-		}
+        if (is_null($constructor)) {
+            return $reflectionClass->newInstanceWithoutConstructor();
+        }
 
         $params = $constructor->getParameters();
         // If there are no dependencies, instantiate without any parameters in constructor
