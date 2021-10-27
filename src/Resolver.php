@@ -60,8 +60,8 @@ class Resolver
         }
 
         // Try to resolve the parameters and instantiate the object with them
-        $argumentos = $this->tryGetArguments($className, $params);
-        return $reflectionClass->newInstanceArgs($argumentos);
+        $arguments = $this->tryGetArguments($className, $params);
+        return $reflectionClass->newInstanceArgs($arguments);
     }
 
     /**
@@ -110,8 +110,8 @@ class Resolver
             throw new ResolverException();
         }
 
-        $tipo = (string) $param->getType();
-        array_push($args, $this->resolve($tipo));
+        $type = (string) $param->getType();
+        array_push($args, $this->resolve($type));
     }
 
     /**
